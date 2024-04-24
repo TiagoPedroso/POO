@@ -9,8 +9,8 @@ class Pedido {
         Cliente cliente;
         Veiculo veiculo;
         string carga;
-        string localColeta;
-        string localEntrega;
+        Localizacao localColeta;
+        Localizacao localEntrega;
         string status;
         float preco;
         int distancia;
@@ -31,11 +31,13 @@ class Pedido {
         string getCarga();
         int setCarga(string carga);
 
-        string getLocalColeta();
-        int setLocalColeta(string localColeta);
+        Localizacao getLocalColeta();
+        int setLocalColeta(Localizacao localColeta);
+        int setLocalColeta(double latitude, double lontitude);
 
-        string getLocalEntrega();
-        int setLocalEntrega(string localEntrega);
+        Localizacao getLocalEntrega();
+        int setLocalEntrega(Localizacao localEntrega);
+        int setLocalEntrega(double latitude, double longitude);
 
         string getStatus();
         int setStatus(string status);
@@ -54,7 +56,11 @@ class Pedido {
 
         Pedido();
 
-        Pedido(Cliente cliente, Veiculo veiculo, string carga, string localColeta, string localEntrega, string status, float preco, int distancia, int peso, int volume);
+        Pedido(Cliente cliente, Veiculo veiculo, string carga, Localizacao localColeta, Localizacao localEntrega, string status, float preco, int distancia, int peso, int volume);
+
+        Pedido(Cliente cliente, Veiculo veiculo, string carga, Localizacao localColeta, double latitudeEntrega, double longitudeEntrega, string status, float preco, int distancia, int peso, int volume);
+
+        Pedido(Cliente cliente, Veiculo veiculo, string carga, double latitudeColeta, double longitudeColeta, double latitudeEntrega, double longitudeEntrega, string status, float preco, int distancia, int peso, int volume);
 
         ~Pedido();
 

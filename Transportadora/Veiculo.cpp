@@ -54,9 +54,9 @@
         return 1;
     }
 
-    int Veiculo::setLocalizacao(double locLati, double locLong) {
-        this->localizacao.latitude = locLati;
-        this->localizacao.longitude = locLong;
+    int Veiculo::setLocalizacao(double latitude, double longitude) {
+        this->localizacao.setLatitude(latitude);
+        this->localizacao.setLongitude(longitude);
         return 1;
     }
 
@@ -165,8 +165,8 @@
         cout << "       Quilometragem: " << getQuilometragem() << " KM" << endl;
         cout << "               Placa: " << getPlaca() << endl;
         cout << "              Chassi: " << getChassi() << endl;
-        cout << "            Latitude: " << getLocalizacao().latitude << endl;
-        cout << "           Longitude: " << getLocalizacao().longitude << endl;
+        cout << "            Latitude: " << getLocalizacao().getLatitude() << endl;
+        cout << "           Longitude: " << getLocalizacao().getLongitude() << endl;
         cout << "  Capacidade de peso: " << getCapacidadePeso() << " KG" << endl;
         cout << "Capacidade de volume: " << getCapacidadeVol() << " L" << endl;
         cout << "          Disponivel: " << boolalpha << isDisponivel() << noboolalpha << endl;
@@ -186,8 +186,8 @@
                << "       Quilometragem: " << veiculo.getQuilometragem() << " KM" << endl
                << "               Placa: " << veiculo.getPlaca() << endl
                << "              Chassi: " << veiculo.getChassi() << endl
-               << "            Latitude: " << (veiculo.getLocalizacao()).latitude << endl
-               << "           Longitude: " << (veiculo.getLocalizacao()).longitude << endl
+               << "            Latitude: " << veiculo.getLocalizacao().getLatitude() << endl
+               << "           Longitude: " << veiculo.getLocalizacao().getLongitude() << endl
                << "  Capacidade de peso: " << veiculo.getCapacidadePeso() << " KG" << endl
                << "Capacidade de volume: " << veiculo.getCapacidadeVol() << " L" << endl
                << "          Disponivel: " << boolalpha << veiculo.isDisponivel() << noboolalpha << endl

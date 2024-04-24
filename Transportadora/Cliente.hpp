@@ -8,7 +8,8 @@ class Cliente {
         static int proxId;
         string tipo;
         string nome;
-        string endereco;
+        string cadastro; // cpf ou cnpj
+        Localizacao endereco;
         string telefone;
         string email;
 
@@ -23,8 +24,12 @@ class Cliente {
         string getNome();
         int setNome(string nome);
 
-        string getEndereco();
-        int setEndereco(string endereco);
+        string getCadastro();
+        int setCadastro(string cadastro);
+
+        Localizacao getEndereco();
+        int setEndereco(Localizacao endereco);
+        int setEndereco(double latitude, double longitude);
 
         string getTelefone();
         int setTelefone(string telefone);
@@ -34,7 +39,9 @@ class Cliente {
 
         Cliente();
 
-        Cliente(string tipo, string nome, string endereco, string telefone, string email);
+        Cliente(string tipo, string nome, string cadastro, Localizacao endereco, string telefone, string email);
+
+        Cliente(string tipo, string nome, string cadastro, double latitude, double longitude, string telefone, string email);
 
         ~Cliente();
 

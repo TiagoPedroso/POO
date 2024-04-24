@@ -33,17 +33,29 @@
         return 1;
     }
 
-    string Pedido::getLocalColeta() {return this->localColeta;}
+    Localizacao Pedido::getLocalColeta() {return this->localColeta;}
 
-    int Pedido::setLocalColeta(string localColeta) {
+    int Pedido::setLocalColeta(Localizacao localColeta) {
         this->localColeta = localColeta;
         return 1;
     }
 
-    string Pedido::getLocalEntrega() {return this->localEntrega;}
+    int Pedido::setLocalColeta(double latitude, double longitude) {
+        this->localColeta.setLatitude(latitude);
+        this->localColeta.setLongitude(longitude);
+        return 1;
+    }
 
-    int Pedido::setLocalEntrega(string localEntrega) {
+    Localizacao Pedido::getLocalEntrega() {return this->localEntrega;}
+
+    int Pedido::setLocalEntrega(Localizacao localEntrega) {
         this->localEntrega = localEntrega;
+        return 1;
+    }
+
+    int Pedido::setLocalEntrega(double latitude, double longitude) {
+        this->localEntrega.setLatitude(latitude);
+        this->localEntrega.setLongitude(longitude);
         return 1;
     }
 
@@ -102,8 +114,8 @@
         setCliente(Cliente());
         setVeiculo(Veiculo());
         setCarga("");
-        setLocalColeta("");
-        setLocalEntrega("");
+        setLocalColeta(0,0);
+        setLocalEntrega(0,0);
         setStatus("");
         setPreco(0);
         setDistancia(0);
@@ -112,12 +124,41 @@
         criaId();
     }
 
-    Pedido::Pedido(Cliente cliente, Veiculo veiculo, string carga, string localColeta, string localEntrega, string status, float preco, int distancia, int peso, int volume) {
+    Pedido::Pedido(Cliente cliente, Veiculo veiculo, string carga, Localizacao localColeta, Localizacao localEntrega, string status, float preco, int distancia, int peso, int volume) {
         setCliente(cliente);
         setVeiculo(veiculo);
         setCarga(carga);
         setLocalColeta(localColeta);
         setLocalEntrega(localEntrega);
+        setStatus(status);
+        setPreco(preco);
+        setDistancia(distancia);
+        setPeso(peso);
+        setVolume(volume);
+        criaId();
+    }
+
+    Pedido::Pedido(Cliente cliente, Veiculo veiculo, string carga, Localizacao localColeta, double latitudeEntrega, double longitudeEntrega, string status, float preco, int distancia, int peso, int volume) {
+        setCliente(cliente);
+        setVeiculo(veiculo);
+        setCarga(carga);
+        setLocalColeta(localColeta);
+        setLocalEntrega(latitudeEntrega, longitudeEntrega);
+        setStatus(status);
+        setPreco(preco);
+        setDistancia(distancia);
+        setPeso(peso);
+        setVolume(volume);
+        criaId();
+    }
+
+
+    Pedido::Pedido(Cliente cliente, Veiculo veiculo, string carga, double latitudeColeta, double longitudeColeta, double latitudeEntrega, double longitudeEntrega, string status, float preco, int distancia, int peso, int volume) {
+        setCliente(cliente);
+        setVeiculo(veiculo);
+        setCarga(carga);
+        setLocalColeta(latitudeColeta, longitudeColeta);
+        setLocalEntrega(latitudeEntrega, longitudeEntrega);
         setStatus(status);
         setPreco(preco);
         setDistancia(distancia);
@@ -133,8 +174,10 @@
         cout << "             Cliente: " << cliente.getNome() << endl;
         cout << "             Veiculo: " << veiculo.getModelo() << endl;
         cout << "               Carga: " << getCarga() << endl;
-        cout << "        Local coleta: " << getLocalColeta() << endl;
-        cout << "       Local entrega: " << getLocalEntrega() << endl;
+        cout << "     Latitude coleta: " << getLocalColeta().getLatitude() << endl;
+        cout << "    Longitude coleta: " << getLocalColeta().getLongitude() << endl;
+        cout << "    Latitude entrega: " << getLocalEntrega().getLatitude() << endl;
+        cout << "   Longitude entrega: " << getLocalEntrega().getLongitude() << endl;
         cout << "              Status: " << getStatus() << endl;
         cout << "               Preco: " << getPreco() << " R$" << endl;
         cout << "           Distancia: " << getDistancia() << " KM" << endl;
@@ -152,8 +195,10 @@
                << "             Cliente: " << pedido.getCliente().getNome() << endl
                << "             Veiculo: " << pedido.getVeiculo().getModelo() << endl
                << "               Carga: " << pedido.getCarga() << endl
-               << "        Local coleta: " << pedido.getLocalColeta() << endl
-               << "       Local entrega: " << pedido.getLocalEntrega() << endl
+               << "     Latitude coleta: " << pedido.getLocalColeta().getLatitude() << endl
+               << "    Longitude coleta: " << pedido.getLocalColeta().getLongitude() << endl
+               << "    Latitude entrega: " << pedido.getLocalEntrega().getLatitude() << endl
+               << "   Longitude entrega: " << pedido.getLocalEntrega().getLongitude() << endl
                << "              Status: " << pedido.getStatus() << endl
                << "               Preco: " << pedido.getPreco() << " R$" << endl
                << "           Distancia: " << pedido.getDistancia() << " KM" << endl
